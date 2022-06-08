@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:CarRentalApp.Views"
+             x:Class="CarRentalApp.AppShell">
+    
+    <Shell.Resources>
+        <Style x:Key="BaseStyle"
+               TargetType="Element">
+            <Setter Property="Shell.BackgroundColor"
+                    Value="DarkCyan" />
+            <Setter Property="Shell.ForegroundColor"
+                    Value="White" />
+            <Setter Property="Shell.TitleColor"
+                    Value="Beige" />
+            <Setter Property="Shell.DisabledColor"
+                    Value="#B4FFFFFF" />
+            <Setter Property="Shell.UnselectedColor"
+                    Value="#95FFFFFF" />
+        </Style>
+    </Shell.Resources>
+    
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Grid HeightRequest="200">
+                <Image Source="rentacarlogo.jpg" Aspect="AspectFill"/>
+            </Grid>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+    
+    <FlyoutItem Title="Liste des voitures" Icon="listIcon.png">
+        <ShellContent Route="list" Style="{StaticResource BaseStyle}" ContentTemplate="{DataTemplate views:CarsList}"></ShellContent>
+    </FlyoutItem>
+    <FlyoutItem Title="Retour de location" Icon="returnIcon.png">
+        <ShellContent Route="return" Style="{StaticResource BaseStyle}" Title="Retour de location" Icon="returnIcon.png" ContentTemplate="{DataTemplate views:RentalReturn}"></ShellContent>
+        <ShellContent Route="pay" Style="{StaticResource BaseStyle}" Title="Payer votre facture" Icon="payIcon.png" ContentTemplate="{DataTemplate views:PaiementPage}"></ShellContent>
+    </FlyoutItem>
+</Shell>
