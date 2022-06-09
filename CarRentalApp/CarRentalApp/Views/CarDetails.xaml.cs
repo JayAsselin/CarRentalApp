@@ -12,6 +12,7 @@ using Xamarin.Forms.Xaml;
 
 namespace CarRentalApp.Views
 {
+    //Jerome Asselin ==> 2195077
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CarDetails : ContentPage
     {
@@ -19,33 +20,45 @@ namespace CarRentalApp.Views
         {
             InitializeComponent();
         }
-        private void Button_Clicked(object sender, EventArgs e)
+        private async void Button_Clicked(object sender, EventArgs e)
         {
             try
             {
                 var btn = sender as Button;
                 var available = btn.BindingContext as Car;
                 if (available.Etat == "Louer")
-                    DisplayAlert("Info", "Désolez cette voiture est déjà loué", "Fermer");
+                    await DisplayAlert("Info", "Désolez cette voiture est déjà loué", "Fermer");
                 else
                 {
-                   DisplayAlert("Info", "Merci d'avoir loué chez nous! Vous pouvez venir chercher la voiture.", "Fermer");
-                    available.Etat = "Louer";
+                    var reponse = await DisplayPromptAsync("Question", "Combien de jour voulez vous louer cette voiture?", "Ok", "Annuler", keyboard:Keyboard.Numeric);
+                    if (reponse != null)
+                    {
+                        await DisplayAlert("Info", "Merci d'avoir loué chez nous!", "Fermer");
+                        available.Etat = "Louer";
+                        available.DureeLocation = Convert.ToInt32(reponse);
+                        cancel.IsVisible = true;
+                    }
+                   
                 }
                     
             }
             catch (Exception ex)
             {
-                DisplayAlert("Info", ex.Message, "Fermer");
+                await DisplayAlert("Info", ex.Message, "Fermer");
+            }
+        }
+
+        private async void cancel_Clicked(object sender, EventArgs e)
+        {
+            var btn = sender as Button;
+            var available = btn.BindingContext as Car;
+            var alert = await DisplayAlert("Attention", "Voulez vous vraiment annuler la location?", "Oui", "Non");
+            if (alert)
+            {
+                await DisplayAlert("Attention", "Location annuler avec succes", "Fermer");
+                available.Etat = "Disponible";
+                cancel.IsVisible = false;
             }
         }
     }
 }
-
-/*
-1. Click sur dans CarDetails
-2. Recuper le vehicule de la list
-3. Changer l'etat
-4. CarViewModel recuper la list
-5. Affiche la list dans rental return
- */

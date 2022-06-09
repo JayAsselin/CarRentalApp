@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--Jerome Asselin ==> 2195077-->
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CarRentalApp.Views.CarsList"
@@ -25,14 +26,8 @@
                                 Text="{Binding Categorie}"
                                 VerticalOptions="Start"
                                 Padding="10,0,0,0" TextColor="Black"/>
-                            <Label Grid.Row="2" Grid.Column="1" VerticalOptions="Start" Padding="10,0,0,0" TextColor="Black">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="{Binding PrixLocation}"/>
-                                        <Span Text="$ / Jour"/>
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
+                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding PrixLocation, StringFormat='{0}$ / Jour'}" VerticalOptions="Start" Padding="10,0,0,0" 
+                                   TextColor="Black"/>
                         </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

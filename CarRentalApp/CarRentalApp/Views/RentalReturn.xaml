@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--Jerome Asselin ==> 2195077-->
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CarRentalApp.Views.RentalReturn"
@@ -12,23 +13,16 @@
             </Frame>
             <Grid RowDefinitions="auto,*" ColumnDefinitions="auto,*" Margin="0,40">
                 <Picker x:Name="pickerList" Grid.Row="0" Grid.ColumnSpan="3" Title="Quelle voiture retourner vous?" TitleColor="Black" TextColor="LightGray"
-                        ItemsSource="{Binding CarReturn}" ItemDisplayBinding="{Binding DisplayText}" SelectedItem="{Binding SelectedCar}" FontSize="Title" 
+                        ItemsSource="{Binding Cars}" ItemDisplayBinding="{Binding DisplayText}" SelectedItem="{Binding SelectedCar}" FontSize="Title" 
                         HorizontalTextAlignment="Center">
                 </Picker>
 
-                <Label Grid.Row="1" TextColor="Black" Text="{Binding SelectedCar.Modele}" FontSize="Large" Padding="0,10"></Label>
-                <Label Grid.Row="1" Grid.Column="2" TextColor="Black" Text="{Binding SelectedCar.Immatriculation}" FontSize="Large" Padding="0,10"></Label>
-                <Image Source="{Binding SelectedCar.ImageUrl}" Aspect="AspectFit" Grid.Row="2" Grid.ColumnSpan="3"></Image>
-                <Label Grid.Row="3" Grid.ColumnSpan="3" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center" Padding="10">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="{Binding SelectedCar.PrixLocation}"/>
-                            <Span Text="$ par jour"/>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
+                <Label Grid.Row="1" Grid.ColumnSpan="3" HorizontalTextAlignment="Center" TextColor="Black" Text="{Binding SelectedCar.Modele, StringFormat='Modèle : {0}'}" FontSize="Large" Padding="0,10"></Label>
+                <Label Grid.Row="2" Grid.ColumnSpan="3" HorizontalTextAlignment="Center" TextColor="Black" Text="{Binding SelectedCar.Immatriculation, StringFormat='Numéro immatriculation : {0}'}" FontSize="Large" Padding="0,10"></Label>
+                <Image Source="{Binding SelectedCar.ImageUrl}" Aspect="AspectFit" Grid.Row="3" Grid.ColumnSpan="3"></Image>
+
             </Grid>
-            <Button Text="Retourner" CornerRadius="10" BackgroundColor="DarkBlue" HorizontalOptions="CenterAndExpand" Margin="0,30" Clicked="Button_Clicked"></Button>
+            <Button Text="Retourner" CornerRadius="10" TextColor="Beige" BackgroundColor="DarkBlue" HorizontalOptions="CenterAndExpand" Margin="0,30" Clicked="Button_Clicked"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--Jerome Asselin ==> 2195077-->
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:CarRentalApp.Views"
@@ -32,7 +33,6 @@
         <ShellContent Route="list" Style="{StaticResource BaseStyle}" ContentTemplate="{DataTemplate views:CarsList}"></ShellContent>
     </FlyoutItem>
     <FlyoutItem Title="Retour de location" Icon="returnIcon.png">
-        <ShellContent Route="return" Style="{StaticResource BaseStyle}" Title="Retour de location" Icon="returnIcon.png" ContentTemplate="{DataTemplate views:RentalReturn}"></ShellContent>
-        <ShellContent Route="pay" Style="{StaticResource BaseStyle}" Title="Payer votre facture" Icon="payIcon.png" ContentTemplate="{DataTemplate views:PaiementPage}"></ShellContent>
+        <ShellContent Route="return" Style="{StaticResource BaseStyle}" ContentTemplate="{DataTemplate views:RentalReturn}"></ShellContent>
     </FlyoutItem>
 </Shell>

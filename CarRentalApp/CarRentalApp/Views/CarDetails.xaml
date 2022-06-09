@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--Jerome Asselin ==> 2195077-->
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CarRentalApp.Views.CarDetails"
@@ -22,34 +23,22 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Label Text="Modèle :" TextColor="Black" HorizontalOptions="CenterAndExpand" FontSize="Large"></Label>
-                <Label Grid.Column="1" Text="{Binding Modele}" TextColor="Black" HorizontalOptions="StartAndExpand" FontSize="Large"></Label>
-                <Image Grid.Row="1" Grid.ColumnSpan="2" Source="{Binding ImageUrl}" Aspect="AspectFit"></Image>
-                <Label Grid.Row="2" Text="Catégorie :" TextColor="Black" HorizontalOptions="EndAndExpand"></Label>
-                <Label Grid.Row="2" Grid.Column="1" Text="{Binding Categorie}" TextColor="Black" HorizontalOptions="StartAndExpand"></Label>
-                <Label Grid.Row="3" Text="Kilométrage :" TextColor="Black" HorizontalOptions="End"></Label>
-                <Label Grid.Row="3" Grid.Column="1" TextColor="Black" HorizontalOptions="StartAndExpand">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="{Binding Kilometrage}"/>
-                            <Span Text=" Km"/>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-                <Label Grid.Row="4" Text="Numéro d'immatriculation :" TextColor="Black" HorizontalOptions="EndAndExpand"></Label>
-                <Label Grid.Column="1" Grid.Row="4" Text="{Binding Immatriculation}" TextColor="Black" HorizontalOptions="StartAndExpand"></Label>
-                <Label Grid.Row="5" Text="Prix de location :" TextColor="Black" HorizontalOptions="EndAndExpand"></Label>
-                <Label Grid.Row="5" Grid.Column="1" TextColor="Black" HorizontalOptions="StartAndExpand">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="{Binding PrixLocation}"/>
-                            <Span Text="$ par jour"/>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
+                <Label Text="Modèle :" TextColor="Black" HorizontalOptions="CenterAndExpand" FontSize="Large"/>
+                <Label Grid.Column="1" Text="{Binding Modele}" TextColor="Black" HorizontalOptions="StartAndExpand" FontSize="Large"/>
+                <Image Grid.Row="1" Grid.ColumnSpan="2" Source="{Binding ImageUrl}" Aspect="AspectFit"/>
+                <Label Grid.Row="2" Text="Catégorie :" TextColor="Black" HorizontalOptions="EndAndExpand"/>
+                <Label Grid.Row="2" Grid.Column="1" Text="{Binding Categorie}" TextColor="Black" HorizontalOptions="StartAndExpand"/>
+                <Label Grid.Row="3" Text="Kilométrage :" TextColor="Black" HorizontalOptions="End"/>
+                <Label Grid.Row="3" Grid.Column="1" Text="{Binding Kilometrage, StringFormat='{0} Km'}" TextColor="Black" HorizontalOptions="StartAndExpand"/>
+                <Label Grid.Row="4" Text="Numéro d'immatriculation :" TextColor="Black" HorizontalOptions="EndAndExpand"/>
+                <Label Grid.Column="1" Grid.Row="4" Text="{Binding Immatriculation}" TextColor="Black" HorizontalOptions="StartAndExpand"/>
+                <Label Grid.Row="5" Text="Prix de location :" TextColor="Black" HorizontalOptions="EndAndExpand"/>
+                <Label Grid.Row="5" Grid.Column="1" Text="{Binding PrixLocation, StringFormat='{0}$ par jour'}" TextColor="Black" HorizontalOptions="StartAndExpand"/>
             </Grid>
-                <Button Text="Louez cette voiture" BackgroundColor="DarkBlue" TextColor="Beige" CornerRadius="10" 
-                        HorizontalOptions="CenterAndExpand" Clicked="Button_Clicked"></Button>
+            <Button x:Name="louer" Text="Louez cette voiture" BackgroundColor="DarkBlue" TextColor="Beige" CornerRadius="10" 
+                        HorizontalOptions="CenterAndExpand" Clicked="Button_Clicked"/>
+            <Button x:Name="cancel" Text="Annuler la location" BackgroundColor="DarkRed" TextColor="Beige" CornerRadius="10" 
+                    HorizontalOptions="CenterAndExpand" IsVisible="false" Clicked="cancel_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

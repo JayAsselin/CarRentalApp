@@ -11,10 +11,11 @@ using Xamarin.Forms.Xaml;
 
 namespace CarRentalApp.Views
 {
+    //Jerome Asselin ==> 2195077
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CarsList : ContentPage
     {
-        public ObservableCollection<Car> Cars => (ObservableCollection<Car>)CarsDbContext.List;
+        public ObservableCollection<Car> Cars { get; set; }
         public CarsList()
         {
             InitializeComponent();
@@ -23,7 +24,7 @@ namespace CarRentalApp.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            //this.Cars = new ObservableCollection<Car>(CarsDbContext.List);
+            this.Cars = new ObservableCollection<Car>(CarsDbContext.List);
             OnPropertyChanged(nameof(Cars));
         }
 

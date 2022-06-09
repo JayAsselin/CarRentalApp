@@ -13,6 +13,7 @@ namespace CarRentalApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AppShell : Shell
     {
+        //Jerome Asselin ==> 2195077
         public AppShell()
         {
             InitializeComponent();

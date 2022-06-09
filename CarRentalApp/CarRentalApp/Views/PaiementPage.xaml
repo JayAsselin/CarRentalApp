@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--Jerome Asselin ==> 2195077-->
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CarRentalApp.Views.PaiementPage"
-             Title="Payer une facture">
+             Title="Payer une facture"
+             BackgroundColor="White">
     <ContentPage.Content>
         <StackLayout>
             <Frame BackgroundColor="DarkOrange" BorderColor="Black">
@@ -12,30 +14,22 @@
                 HorizontalOptions="CenterAndExpand" />
             </Frame>
 
-            <CollectionView ItemsSource="{Binding Cars}" Margin="0,10">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Padding="10" RowDefinitions="Auto, *" ColumnDefinitions="Auto, *">
-                            <Image Grid.RowSpan="4" Source="{Binding ImageUrl}" Aspect="AspectFit" HeightRequest="90" WidthRequest="200"/>
-                            <Label Grid.Column="1"
-                                Text="{Binding Modele}"
-                                FontAttributes="Bold"
-                                VerticalOptions="Center"
-                                Padding="10,15,0,0" TextColor="Black"/>
-                            <Label Grid.Row="1" Grid.Column="1" VerticalOptions="Start" Padding="10,0,0,0" TextColor="Black">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="{Binding PrixLocation}"/>
-                                        <Span Text="$ / Jour"/>
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <Button Text="Payer maintenant" BackgroundColor="DarkBlue" Grid.RowSpan="2" Grid.Column="2" TextColor="Beige"></Button>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-
-            </CollectionView>
+            <StackLayout VerticalOptions="FillAndExpand">
+                <Image Source="{Binding ImageUrl}" Aspect="AspectFit" HeightRequest="200" WidthRequest="200"></Image>
+                <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                    <Label Text="{Binding Modele}" TextColor="Black" HorizontalOptions="CenterAndExpand" FontSize="Medium"></Label>
+                    <Label Text="{Binding Kilometrage, StringFormat='Kilométrage enregistrée : {0} Km'}" TextColor="Black" HorizontalOptions="CenterAndExpand" FontSize="Medium"></Label>
+                    <Label Text="{Binding DureeLocation, StringFormat='Durée de la location : {0} jour'}" TextColor="Black" HorizontalOptions="CenterAndExpand" FontSize="Medium"></Label>
+                    <Label Text="{Binding PrixLocation, StringFormat='Coût de la location : {0}$ par jour'}" TextColor="Black" HorizontalOptions="CenterAndExpand" FontSize="Medium"></Label>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+            <Frame BackgroundColor="White" BorderColor="Black" CornerRadius="20">
+                <Label x:Name="invoice" VerticalOptions="Center" TextColor="Black" FontSize="Medium"></Label>
+            </Frame>
+            <Button x:Name="dismiss" Text="Payer" TextColor="Beige" BackgroundColor="DarkBlue" CornerRadius="10" HorizontalOptions="CenterAndExpand" 
+                    Clicked="dismiss_Clicked"></Button>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

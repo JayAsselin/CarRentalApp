@@ -13,6 +13,7 @@ using Xamarin.Forms.Xaml;
 
 namespace CarRentalApp.Views
 {
+    //Jerome Asselin ==> 2195077
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RentalReturn : ContentPage
     {
@@ -34,23 +35,23 @@ namespace CarRentalApp.Views
             }
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
+        private async void Button_Clicked(object sender, EventArgs e)
         {
             try
             {
-                var btn = sender as Button;
-                var available = btn.BindingContext as Car;
-                if (available.Etat == "Louer")
+                //var btn = sender as Button;
+                BindingContext = pickerList.SelectedItem as Car;
+                var available = BindingContext as Car;
+                if (available.Etat != null)
                 {
-                    DisplayAlert("Info", "Merci d'avoir rapporter la voiture", "Fermer");
                     available.Etat = "Disponible";
-                    //
-                }
+                    await Navigation.PushModalAsync(new PaiementPage(available));
 
+                }
             }
             catch (Exception ex)
             {
-                DisplayAlert("Info", ex.Message, "Fermer");
+                await DisplayAlert("Info", ex.Message, "Fermer");
             }
         }
     }
